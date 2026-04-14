@@ -13,7 +13,7 @@ def _get_note_index(note_id: int) -> int:
     for i, note in enumerate(_notes):
         if note.id == note_id:
             return i
-        return -1
+    return -1
     
 @router.post(
     "",
@@ -56,7 +56,7 @@ def get_note(note_id: int):
     index = _get_note_index(note_id)
     if index == -1:
         raise HTTPException(status_code=404, detail="Note not found")
-    return _notes(index)
+    return _notes[index]
 
 @router.put("/{note_id}", response_model=NoteResponse)
 def update_note(note_id: int, payload: NoteUpdate):
